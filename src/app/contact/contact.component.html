@@ -1,0 +1,13 @@
+<div>
+<h2>
+    <span *ngIf="contact.isFavorite" class="favorite">&#9733;</span>
+    {{contact.name}}
+</h2>
+<ul>
+<li>Email: {{ contact.email }}</li>
+<li>Phone: {{ contact.phone }}</li>
+</ul>
+</div>
+<img [src]="contact.avatar" alt="avatar">
+<input type="checkbox" name="isFavorite" id="isFavorite" [(ngModel)]="contact.isFavorite">
+<label for="isFavorite" [class.favorite]="contact.isFavorite">Favorite</label><br>
