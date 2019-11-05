@@ -1,7 +1,6 @@
 <div>
 <h2>
-    <span *ngIf="contact.isFavorite" class="favorite">&#9733;</span>
-    {{contact.name}}
+    {{contact.name | capitalize }} 
 </h2>
 <ul>
 <li>Email: {{ contact.email }}</li>
