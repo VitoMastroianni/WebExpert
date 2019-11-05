@@ -12,7 +12,6 @@ export class ContactComponent implements OnInit{
 
     isFavorite: boolean = false;
     @Input () contact: Contact;
-    @Input() index: number;
     @Output() onUpdate: EventEmitter<any> = new EventEmitter();
 
     constructor(private service: ContactService) { }
@@ -25,9 +24,8 @@ export class ContactComponent implements OnInit{
         console.log('Button Clicked. Status van favorite is:' + this.isFavorite);
     }
 
-    toggleFavorite(index: number): void {
-        this.service.toggleFavorite(index);
-        this.onUpdate.emit();
-    }
-
+    toggleFavorite(id: string, isFavorite: boolean): void {
+        this.service.updateContact(id, {isFavorite: isFavorite})
+        .subscribe(() => this.onUpdate.emit());
+     }
 }

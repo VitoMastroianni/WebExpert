@@ -5,6 +5,8 @@ import { ContactComponent } from './contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ContactService } from './services/contact.service';
+import { HttpClientModule, HttpClient } from '@angular/common/http';  
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { ContactService } from './services/contact.service';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [ContactService],
   bootstrap: [AppComponent]

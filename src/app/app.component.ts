@@ -10,26 +10,39 @@ import { ContactService } from './services/contact.service';
 })
 export class AppComponent implements OnInit {
   contactList: Contact[];
+  onlyFavorites: boolean = false;
 
   constructor(private service: ContactService) { }
+
   ngOnInit(): void {
-    this.contactList = this.service.getContactList();
+    this.fetchContactList(this.onlyFavorites);
   }
+
+  fetchContactList(onlyFav: boolean): void {
+    this.service.getContactList(onlyFav).subscribe(data => {
+      this.contactList = data;
+    })
+  }
+
+  createContact(event: Contact) {
+    this.service.addContact(event).subscribe(() => this.fetchContactList(this.onlyFavorites))
+   }
+ 
 
 
   handleData(event: Contact){
     console.log('Recieved data!', event);
   }
 
-  createContact(event: Contact) {
-    this.service.addContact(event);
-    this.contactList = this.service.getContactList();
-
-  }
-
   handleUpdate(): void {
-    this.contactList = this.service.getContactList();
+    this.fetchContactList(this.onlyFavorites);
   }
+
+  toggleView(onlyFav: boolean): void {
+    this.onlyFavorites = !onlyFav;
+    this.fetchContactList(this.onlyFavorites);
+}
+
 
 
 }
