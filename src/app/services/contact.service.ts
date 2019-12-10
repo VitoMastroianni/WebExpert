@@ -52,4 +52,18 @@ export class ContactService {
         let url: string = `${CONTACTAPIURL}${id}.json`;
         return this.http.patch(url, data);
     }
+
+    getContact(id: string) {
+        let url = `${CONTACTAPIURL}${id}.json`;
+        return this.http.get(url).pipe(
+            map(data => new Contact(data['name'], data['email'], data['phone'], data['isFavorite'], data['avatar'], id))
+   );
+    }
+
+    deleteContact(id: string) {
+        let url = `${CONTACTAPIURL}${id}.json`;
+        return this.http.delete(url);
+    }
+
+
 }
